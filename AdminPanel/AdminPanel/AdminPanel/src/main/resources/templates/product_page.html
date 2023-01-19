@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="ISO-8859-1">
+  <title>Product Management System</title>
+  <link rel="stylesheet"
+        href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+        crossorigin="anonymous">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+</head>
+<body>
+<nav class="navbar navbar-expand-md bg-dark navbar-dark">
+  <!-- Brand -->
+
+
+  <!-- Toggler/collapsibe Button -->
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <!-- Navbar links -->
+  <div class="collapse navbar-collapse" id="collapsibleNavbar">
+    <ul class="navbar-nav">
+      <li class="nav-item">
+        <a class="navbar-brand" th:href="@{/products}">Urun Yonetim Sistemi</a>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+<div class ="container">
+  <div class = "d-flex justify-content-center">
+    <h1 class="m-4"> Urun Listesi </h1>
+  </div>
+<div class="d-flex ">
+  <div th:each = "product: ${products}" class="card mx-4" style="width: 18rem;">
+    <img th:src="*{'data:image/jpeg;base64,'+{product.imageUrl}}" class="card-img-top" src="..." alt="Card image cap">
+    <div class="card-body">
+      <h5 th:text = "${product.productName}" class="card-title"></h5>
+      <h5 th:text = "${product.brandName}" class="card-title"></h5>
+      <p th:text = "${product.properties}" class="card-text"></p>
+
+    </div>
+  </div>
+</div>
+
+</div>
+
+</body>
+
+</html>

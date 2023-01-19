@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="ISO-8859-1">
+    <title>Student Management System</title>
+    <link rel="stylesheet"
+          href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+          crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+</head>
+<body>
+<nav class="navbar navbar-expand-md bg-dark navbar-dark">
+    <!-- Brand -->
+
+
+    <!-- Toggler/collapsibe Button -->
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <!-- Navbar links -->
+    <div class="collapse navbar-collapse" id="collapsibleNavbar">
+        <ul class="navbar-nav">
+            <li class="nav-item">
+                <a class="navbar-brand" th:href="@{/products}">Urun Yonetim Sistemi</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+<br>
+<br>
+<div class = "container">
+    <div class = "row">
+        <div class ="col-lg-6 col-md-6 col-sm-6 container justify-content-center card">
+            <h1 class = "text-center mt-4"> Urun Guncelle </h1>
+            <div class = "card-body">
+                <form th:action="@{/products/{id} (id=${product.id})}" th:object = "${product}" method="POST">
+
+                    <div class ="form-group">
+                        <label> Urun ismi </label>
+                        <input
+                                type = "text"
+                                name = "productName"
+                                th:field = "*{productName}"
+                                class = "form-control"
+                                placeholder="urun ismi girin"
+                        />
+                    </div>
+
+                    <div class ="form-group">
+                        <label> Image Url: </label>
+                        <input
+                                type="text"
+                                name="imageUrl"
+                                th:field = "*{imageUrl}"
+                                class = "form-control"
+                        />
+
+                    </div>
+
+
+                    <div class ="form-group">
+                        <label> Marka adi: </label>
+                        <input
+                                type = "text"
+                                name = "brandName"
+                                th:field = "*{brandName}"
+                                class = "form-control"
+                                placeholder="Marka adi girin"
+                        />
+                    </div>
+
+                    <div class ="form-group">
+                        <label> Ozellikler </label>
+                        <input
+                                type = "text"
+                                name = "properties"
+                                th:field = "*{properties}"
+                                class = "form-control"
+                                placeholder="Özellikleri girin"
+                        />
+                    </div>
+
+
+                    <div class = "box-footer">
+                        <button type="submit" class = "btn btn-primary">
+                            Kaydet
+                        </button>
+                    </div>
+                </form>
+
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+var time = new Date();
+console.log(time.getHours() + ":" + time.getMinutes() + ":" + time.getSeconds());
+    $(document).ready(function(){
+
+
+
+
+    $("#fileImage").change(function(){
+    showImageThumbnail(this);
+    });
+
+
+    function showImageThumbnail(fileInput){
+        file= fileInput.files[0];
+        reader= new FileReader();
+        reader.onload = function(e) {
+        $("#thumbnail").attr("src", e.target.result);
+        };
+        reader.readAsDataURL(file);
+    }
+
+
+
+    })
+
+</script>
+</body>
+</html>

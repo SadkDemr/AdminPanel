@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="ISO-8859-1">
+    <title>Product Management System</title>
+    <link rel="stylesheet"
+          href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+          crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+</head>
+<body>
+<nav class="navbar navbar-expand-md bg-dark navbar-dark">
+    <!-- Brand -->
+
+
+    <!-- Toggler/collapsibe Button -->
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <!-- Navbar links -->
+    <div class="collapse navbar-collapse" id="collapsibleNavbar">
+        <ul class="navbar-nav">
+            <li class="nav-item">
+                <a class="navbar-brand" th:href="@{/products}">Urun Yonetim Sistemi</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+<div class ="container">
+    <div class = "d-flex justify-content-center">
+        <h1 class="m-4"> Urun Listesi </h1>
+    </div>
+
+    <div class = "row">
+
+    </div>
+    <table class = "table table-striped table-bordered">
+        <thead class = "table-dark items-center">
+        <tr>
+            <th> Urun adi</th>
+            <th> Marka adi</th>
+            <th> Ozellikler </th>
+            <th> Img </th>
+
+            <th> Action </th>
+        </tr>
+        </thead>
+
+        <tbody>
+        <tr th:each = "product: ${products}">
+            <td th:text = "${product.productName}"></td>
+            <td th:text = "${product.brandName}"></td>
+            <td th:text = "${product.properties}"></td>
+            <th scope="row"><img alt="" th:src="*{'data:image/jpeg;base64,'+{product.imageUrl}}" style="width: 100px;height: 100px;"></th>
+            <td>
+                <a th:href = "@{/products/edit/{id}(id=${product.id})}"
+                   class = "btn btn-primary">Guncelle</a>
+
+                <a th:href = "@{/products/{id}(id=${product.id})}"
+                   class = "btn btn-danger mx-2">Sil</a>
+
+            </td>
+        </tr>
+        </tbody>
+
+    </table>
+    <div class = "col-lg-3">
+        <a th:href = "@{/products/new}" class = "btn btn-primary btn-sm mb-3"> Urun ekle</a>
+        <a th:href = "@{/product/page}" class = "btn btn-primary btn-sm mb-3"> Urun goster</a>
+    </div>
+
+</div>
+
+</body>
+
+</html>
